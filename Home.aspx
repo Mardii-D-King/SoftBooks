@@ -57,11 +57,19 @@
         <asp:SqlDataSource ID="Owlery" runat="server" ConnectionString="<%$ ConnectionStrings:SoftArchivesConnectionString %>" SelectCommand="SELECT * FROM [Books]"></asp:SqlDataSource>
     
     </div>
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Proceed to CheckOut" />
+        <br />
+        <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" DataSourceID="Owlery" Height="50px" Width="125px">
+            <Fields>
+                <asp:BoundField DataField="ISBN" HeaderText="ISBN" SortExpression="ISBN" />
+                <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
+                <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
+                <asp:BoundField DataField="Discription" HeaderText="Discription" SortExpression="Discription" />
+            </Fields>
+        </asp:DetailsView>
         <br />
         <br />
-        <br />
-        <asp:ListBox ID="ListBox1" runat="server" Height="166px" Width="290px"></asp:ListBox>
+        <asp:ListBox ID="ListBox1" runat="server" Height="73px" Width="259px" OnSelectedIndexChanged="ListBox1_SelectedIndexChanged"></asp:ListBox>
 &nbsp;&nbsp;&nbsp;
         <asp:Label ID="Label3" runat="server" Text="Total Cost:"></asp:Label>
 &nbsp;

@@ -14,31 +14,31 @@ public partial class Home : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
 
-        double total,tot=0;
-
+        double total = 0;
+       
+        
         for(int i=0; i <GridView1.Rows.Count; i++)
         {
             CheckBox ch=(CheckBox) GridView1.Rows[i].FindControl("CheckBox1");
             Label lb = (Label)GridView1.Rows[i].FindControl("Label1");
            Label lbs = (Label)GridView1.Rows[i].FindControl("Label2");
 
-           
-           double price = Convert.ToDouble(lbs.Text.ToString());
-
-           total = +price;
-           
-
+ 
            if (ch.Checked == true)
            {
-               ListBox1.Items.Add(lb.Text.ToString());
-               ListBox1.Items.Add(lbs.Text.ToString());
+               ListBox1.Items.Add(lb.Text.ToString() + "\t" + '$' + lbs.Text.ToString());
 
-              
+               double price = Convert.ToDouble(lbs.Text.ToString());
 
-               
-           }
-           tot += total;
-           Label4.Text = tot.ToString();
+               total += price;
+
+               Session["Price"] = Convert.ToString(total);
+
+              // total = Session["Price"];
+
+               Label4.Text = Session["Price"].ToString();
+           };
+
         }
 
         
