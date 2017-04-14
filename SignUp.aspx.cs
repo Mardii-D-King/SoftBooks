@@ -28,11 +28,12 @@ public partial class SignUp : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
         Customers obj = new Customers(Convert.ToString(TextBox1.Text), Convert.ToString(TextBox2.Text),
-                                      Convert.ToString(TextBox4.Text), Convert.ToString(TextBox5.Text),
-                                      Convert.ToString(TextBox6.Text), Convert.ToString(TextBox7.Text),
-                                      sex, Convert.ToString(DropDownList1.SelectedValue),
-                                      Convert.ToString(DropDownList2.SelectedValue), 
-                                      Convert.ToString(TextBox8.Text));
+                                      Convert.ToString(TextBox5.Text), Convert.ToString(TextBox7.Text),
+                                      sex, Convert.ToInt16(DropDownList1.SelectedValue),
+                                      Convert.ToInt16(DropDownList2.SelectedValue), 
+                                      Convert.ToInt16(TextBox8.Text));
+
+        
     }
     protected void RadioButton1_CheckedChanged(object sender, EventArgs e)
     {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -16,17 +17,7 @@ public class Customers
     protected int month;
     protected int day;
     protected int year;
-    private string p1;
-    private string p2;
-    private string p3;
-    private string p4;
-    private string p5;
-    private string p6;
-    private char sex;
-    private string p7;
-    private string p8;
-    private string p9;
-
+  
 	public Customers()
 	{
         fname = "Mardon";
@@ -39,22 +30,7 @@ public class Customers
         year = 2003;
 	}
 
-    public Customers(string p1, string p2, string p3, string p4, string p5, string p6, char sex, string p7, string p8, string p9)
-    {
-        // TODO: Complete member initialization
-        this.p1 = p1;
-        this.p2 = p2;
-        this.p3 = p3;
-        this.p4 = p4;
-        this.p5 = p5;
-        this.p6 = p6;
-        this.sex = sex;
-        this.p7 = p7;
-        this.p8 = p8;
-        this.p9 = p9;
-    }
-
-    public void Customer(String fn, String ln, String pass, String mail, char sex, int mn, int dy, int yr)
+    public Customers(String fn, String ln, String pass, String mail, char sex, int mn, int dy, int yr)
     {
         fname = fn;
         lname = ln;
@@ -144,5 +120,15 @@ public class Customers
     public void setYear(int year)
     {
         this.year = year;
+    }
+
+    //Create table to enter records
+
+    public void CreateRecord()
+    {
+        SqlConnection conn = new SqlConnection("Server=.\\SQLEXPRESS;Database = SoftArchives");
+        conn.Open();
+
+        
     }
 }
