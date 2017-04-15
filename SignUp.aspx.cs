@@ -8,11 +8,9 @@ using System.Web.UI.WebControls;
 
 public partial class SignUp : System.Web.UI.Page
 {
-    protected char sex;
-
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+
     }
     protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
     {
@@ -29,19 +27,23 @@ public partial class SignUp : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
         Customers obj = new Customers(Convert.ToString(TextBox1.Text), Convert.ToString(TextBox2.Text),
-                                      Convert.ToString(TextBox5.Text), Convert.ToString(TextBox7.Text),
-                                      sex, Convert.ToInt16(DropDownList1.SelectedValue),
-                                      Convert.ToInt16(DropDownList2.SelectedValue), 
-                                      Convert.ToInt16(TextBox8.Text));
+                                      Convert.ToString(TextBox5.Text), Convert.ToString(TextBox7.Text));
 
-        obj.CreateRecord();
-    }
-    protected void RadioButton1_CheckedChanged(object sender, EventArgs e)
-    {
-        sex = 'M';
-    }
-    protected void RadioButton2_CheckedChanged(object sender, EventArgs e)
-    {
-        sex = 'F';
+        Boolean exist = obj.EmailExistance();
+
+        if (exist.Equals(true))
+        {
+            Response.Write("<script language='javascript'>window.alert('Email Already Exist');</script>");
+
+            TextBox6.Text = string.Empty;
+            TextBox7.Text = string.Empty;
+        }
+        else 
+        {
+            obj.CreateRecord();
+            Response.Write("<script language='javascript'>window.alert('Registration Successful');</script>");
+            Response.Redirect("SignIn.aspx");
+        }
+       
     }
 }

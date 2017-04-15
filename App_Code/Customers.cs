@@ -14,10 +14,7 @@ public class Customers
     private String lname;
     private String password;
     private String email;
-    private char gender;
-    private int month;
-    private int day;
-    private int year;
+    private Boolean exist = false;
   
 	public Customers()
 	{
@@ -25,22 +22,14 @@ public class Customers
         lname = "Bailey";
         password = "password";
         email = "test@email.com";
-        gender = 'M';
-        month = 1;
-        day = 2;
-        year = 2003;
 	}
 
-    public Customers(String fn, String ln, String pass, String mail, char sex, int mn, int dy, int yr)
+    public Customers(String fn, String ln, String pass, String mail)
     {
         fname = fn;
         lname = ln;
         password = pass;
         email = mail;
-        gender = sex;
-        month = mn;
-        day = dy;
-        year = yr;
     }
 
     public String getFname()
@@ -83,48 +72,27 @@ public class Customers
         this.email = email;
     }
 
-    public char getGender()
+    //Check if email already exist
+    public Boolean EmailExistance()
     {
-        return gender;
-    }
+        SqlConnection conn = new SqlConnection(@"Data Source = DESKTOP-D1ADLHT\OWLERY; Initial Catalog = SoftArchives;Integrated Security=True");
+        conn.Open();
 
-    public void setGender(char gender)
-    {
-        this.gender = gender;
-    }
+        SqlCommand cmd = new SqlCommand("Select * from Customer", conn);
+        SqlDataReader rd = cmd.ExecuteReader();
 
-    public int getMonth()
-    {
-        return month;
-    }
-
-    public void setMonth(int month)
-    {
-        this.month = month;
-    }
-
-    public int getDay()
-    {
-        return day;
-    }
-
-    public void setDay(int day)
-    {
-        this.day = day;
-    }
-
-    public int getYear()
-    {
-        return year;
-    }
-
-    public void setYear(int year)
-    {
-        this.year = year;
+        while (rd.Read())
+        {
+            if (rd[4].ToString()==email)
+            {
+                exist = true;
+                break;
+            }
+        }
+        return exist;
     }
 
     //Create table to enter records
-
     public void CreateRecord()
     {
         SqlConnection conn = new SqlConnection(@"Data Source = DESKTOP-D1ADLHT\OWLERY; Initial Catalog = SoftArchives;Integrated Security=True");
@@ -162,11 +130,6 @@ public class Customers
         p5.ParameterName = "@mail";
         p5.Value = email;
         cmd.Parameters.Add(p5);
-
-        SqlParameter p6 = new SqlParameter();
-        p6.ParameterName = "@sex";
-        p6.Value = gender;
-        cmd.Parameters.Add(p6);
 
         cmd.Connection = conn;
         cmd.ExecuteNonQuery();      
