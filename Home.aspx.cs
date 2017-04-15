@@ -44,4 +44,13 @@ public partial class Home : System.Web.UI.Page
         
 
     }
+
+    protected void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+    protected void DetailsView1_PageIndexChanging(object sender, DetailsViewPageEventArgs e)
+    {
+
+    }
 }

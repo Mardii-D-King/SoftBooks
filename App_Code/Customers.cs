@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -9,14 +10,14 @@ using System.Web;
 /// </summary>
 public class Customers
 {
-    protected String fname;
-    protected String lname;
-    protected String password;
-    protected String email;
-    protected char gender;
-    protected int month;
-    protected int day;
-    protected int year;
+    private String fname;
+    private String lname;
+    private String password;
+    private String email;
+    private char gender;
+    private int month;
+    private int day;
+    private int year;
   
 	public Customers()
 	{
@@ -126,9 +127,48 @@ public class Customers
 
     public void CreateRecord()
     {
-        SqlConnection conn = new SqlConnection("Server=.\\SQLEXPRESS;Database = SoftArchives");
+        SqlConnection conn = new SqlConnection(@"Data Source = DESKTOP-D1ADLHT\OWLERY; Initial Catalog = SoftArchives;Integrated Security=True");
         conn.Open();
-
         
+        SqlCommand cmd = new SqlCommand("Select Count(CustId) from Customer", conn);    
+
+        int i = Convert.ToInt32(cmd.ExecuteScalar());
+        i++;
+
+        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+        cmd.CommandText = "Register";
+
+        SqlParameter p1 = new SqlParameter();
+        p1.ParameterName = "@id";
+        p1.Value = i;
+        cmd.Parameters.Add(p1);
+
+        SqlParameter p2 = new SqlParameter();
+        p2.ParameterName = "@fn";
+        p2.Value = fname;
+        cmd.Parameters.Add(p2);
+
+        SqlParameter p3 = new SqlParameter();
+        p3.ParameterName = "@ln";
+        p3.Value = lname;
+        cmd.Parameters.Add(p3);
+
+        SqlParameter p4 = new SqlParameter();
+        p4.ParameterName = "@pass";
+        p4.Value = password;
+        cmd.Parameters.Add(p4);
+
+        SqlParameter p5 = new SqlParameter();
+        p5.ParameterName = "@mail";
+        p5.Value = email;
+        cmd.Parameters.Add(p5);
+
+        SqlParameter p6 = new SqlParameter();
+        p6.ParameterName = "@sex";
+        p6.Value = gender;
+        cmd.Parameters.Add(p6);
+
+        cmd.Connection = conn;
+        cmd.ExecuteNonQuery();      
     }
 }

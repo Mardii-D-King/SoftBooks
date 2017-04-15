@@ -59,7 +59,7 @@
     </div>
         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Proceed to CheckOut" />
         <br />
-        <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" DataSourceID="Owlery" Height="50px" Width="125px">
+        <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" DataSourceID="Owlery" Height="50px" Width="125px" OnPageIndexChanging="DetailsView1_PageIndexChanging">
             <Fields>
                 <asp:BoundField DataField="ISBN" HeaderText="ISBN" SortExpression="ISBN" />
                 <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
