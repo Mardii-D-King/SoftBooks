@@ -11,4 +11,8 @@ public partial class Admin : System.Web.UI.Page
     {
 
     }
+    protected void ListView1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
 }

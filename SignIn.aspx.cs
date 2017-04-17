@@ -36,6 +36,11 @@ public partial class SignIn : System.Web.UI.Page
 
             else
             {
+                //Pass ISBN to the Profile page by a session               
+
+                Session["CustID"] = dr["CustId"].ToString();
+                Session["Name"] = dr["Firstname"].ToString();
+
                 Response.Write("<script language='javascript'>window.alert('Login Successfull');</script>");
                 Response.Redirect("Home.aspx");
             }
@@ -47,4 +52,4 @@ public partial class SignIn : System.Web.UI.Page
         }
         conn.Close();
     }
-} 
+} //SELECT Firstname FROM Customer WHERE Email=@email;

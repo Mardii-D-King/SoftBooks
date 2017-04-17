@@ -93,7 +93,7 @@ public class Customers
     }
 
     //Create table to enter records
-    public void CreateRecord()
+    public void Insert()
     {
         SqlConnection conn = new SqlConnection(@"Data Source = DESKTOP-D1ADLHT\OWLERY; Initial Catalog = SoftArchives;Integrated Security=True");
         conn.Open();
@@ -133,5 +133,10 @@ public class Customers
 
         cmd.Connection = conn;
         cmd.ExecuteNonQuery();      
+    }
+
+    public void Select()
+    { 
+        
     }
 }

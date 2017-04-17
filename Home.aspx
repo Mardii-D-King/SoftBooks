@@ -7,7 +7,7 @@
     <title></title>
     <style type="text/css">
         #form1 {
-            height: 514px;
+            height: 610px;
         }
     </style>
 </head>
@@ -15,7 +15,15 @@
     <form id="form1" runat="server">
     <div>
     
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="Owlery" ForeColor="#333333" GridLines="None" Width="502px">
+        &nbsp;<asp:Label ID="Label5" runat="server" Text="Welcome:"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+        <asp:Label ID="Label6" runat="server" Text="Label"></asp:Label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/MyProfile.aspx">MyProfile</asp:HyperLink>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br />
+        <br />
+    
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="Owlery" ForeColor="#333333" GridLines="None" Width="791px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" DataKeyNames="ISBN" Height="429px">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:TemplateField>
@@ -23,14 +31,20 @@
                         <asp:CheckBox ID="CheckBox1" runat="server" />
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField></asp:TemplateField>
-                <asp:BoundField DataField="ISBN" HeaderText="ISBN" SortExpression="ISBN" />
+                <asp:TemplateField HeaderText="ISBN" SortExpression="ISBN">
+                    <EditItemTemplate>
+                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("ISBN") %>'></asp:Label>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("ISBN") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <asp:TemplateField HeaderText="Name" SortExpression="Name">
                     <EditItemTemplate>
                         <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Name") %>'></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
+                        <asp:Label ID="Label2" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Price" SortExpression="Price">
@@ -38,10 +52,33 @@
                         <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Price") %>'></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="Label2" runat="server" Text='<%# Bind("Price") %>'></asp:Label>
+                        <asp:Label ID="Label3" runat="server" Text='<%# Bind("Price") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="Discription" HeaderText="Discription" SortExpression="Discription" />
+                <asp:TemplateField HeaderText="Discription" SortExpression="Discription">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("Discription") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label4" runat="server" Text='<%# Bind("Discription") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Stock" SortExpression="Stock">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Stock") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label5" runat="server" Text='<%# Bind("Stock") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Quantity Required" SortExpression="ISBN">
+                    <EditItemTemplate>
+                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("ISBN") %>'></asp:Label>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:TextBox ID="TextBox5" runat="server" Height="18px" Width="41px"></asp:TextBox>
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
             <EditRowStyle BackColor="#2461BF" />
             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -57,34 +94,13 @@
         <asp:SqlDataSource ID="Owlery" runat="server" ConnectionString="<%$ ConnectionStrings:SoftArchivesConnectionString %>" SelectCommand="SELECT * FROM [Books]"></asp:SqlDataSource>
     
     </div>
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Proceed to CheckOut" />
-        <br />
-        <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" DataSourceID="Owlery" Height="50px" Width="125px" OnPageIndexChanging="DetailsView1_PageIndexChanging">
-            <Fields>
-                <asp:BoundField DataField="ISBN" HeaderText="ISBN" SortExpression="ISBN" />
-                <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
-                <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
-                <asp:BoundField DataField="Discription" HeaderText="Discription" SortExpression="Discription" />
-            </Fields>
-        </asp:DetailsView>
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Add to Cart" />
         <br />
         <br />
-        <asp:ListBox ID="ListBox1" runat="server" Height="73px" Width="259px" OnSelectedIndexChanged="ListBox1_SelectedIndexChanged"></asp:ListBox>
-&nbsp;&nbsp;&nbsp;
-        <asp:Label ID="Label3" runat="server" Text="Total Cost:"></asp:Label>
-&nbsp;
-        <asp:Label ID="Label4" runat="server" Text="Total"></asp:Label>
         <br />
         <br />
-&nbsp;&nbsp;
-        <asp:Label ID="Label5" runat="server" Text="Method of Payment"></asp:Label>
-&nbsp;<asp:RadioButtonList ID="RadioButtonList1" runat="server">
-            <asp:ListItem>Cash</asp:ListItem>
-            <asp:ListItem>Credit</asp:ListItem>
-            <asp:ListItem>Debit</asp:ListItem>
-        </asp:RadioButtonList>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="Button2" runat="server" Text="CashOut" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="Button2" runat="server" Text="Proceed to Checkout" OnClick="Button2_Click" />
     </form>
 </body>
 </html>

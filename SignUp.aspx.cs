@@ -40,7 +40,7 @@ public partial class SignUp : System.Web.UI.Page
         }
         else 
         {
-            obj.CreateRecord();
+            obj.Insert();
             Response.Write("<script language='javascript'>window.alert('Registration Successful');</script>");
             Response.Redirect("SignIn.aspx");
         }
