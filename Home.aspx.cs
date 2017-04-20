@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,45 +12,37 @@ public partial class Home : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
       //  Label6.Text = Session["Name"].ToString();
+      
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
+            foreach (GridViewRow gvrow in GridView1.Rows)
+            {
+                int isbn;
+                String name;
+                double cost;
+                String desc;
+                int amt;
 
-        double total = 0;
-       
-        
-        for(int i=0; i <GridView1.Rows.Count; i++)
-        {
-            CheckBox ch=(CheckBox) GridView1.Rows[i].FindControl("CheckBox1");
+                CheckBox chk = (CheckBox)gvrow.FindControl("CheckBox1");
+                if (chk != null & chk.Checked)
+                {
 
-            Label isbn = (Label)GridView1.Rows[i].FindControl("Label1");
-            Label name = (Label)GridView1.Rows[i].FindControl("Label2");
-           Label cost = (Label)GridView1.Rows[i].FindControl("Label3");
-           Label descr = (Label)GridView1.Rows[i].FindControl("Label4");
-           Label stock = (Label)GridView1.Rows[i].FindControl("Label5");
-           TextBox amount = (TextBox)GridView1.Rows[i].FindControl("TextBox5");
-          
+                    isbn = Convert.ToInt16(((Label)gvrow.FindControl("Label1")).Text);
+                    name = ((Label)gvrow.FindControl("Label2")).Text;
+                    cost = Convert.ToDouble(((Label)gvrow.FindControl("Label3")).Text);
+                    desc = ((Label)gvrow.FindControl("Label4")).Text;
+                    amt = Convert.ToInt16(((TextBox)gvrow.FindControl("textbox6")).Text);
 
-           if (ch.Checked == true)
-           {
-             //  ListBox1.Items.Add(isbn.Text.ToString() + "\t" + name.Text.ToString() + '$' + cost.Text.ToString() + descr.Text.ToString() + stock.Text.ToString() + amount.Text.ToString());
+                    
 
-               double price = Convert.ToDouble(cost.Text.ToString());
-
-               total += price;
-
-               Session["Price"] = Convert.ToString(total);
-
-              // total = Session["Price"];
-
-             //  Label4.Text = Session["Price"].ToString();
-           };
-            ch.Checked = false;
+                    Purchases obj = new Purchases(isbn, name, cost, desc, amt);
+                    obj.addPurchases();
+                }
+                chk.Checked = false;
+                TextBox amount = (TextBox)gvrow.FindControl("textbox6");
             amount.Text = String.Empty;
-        }
-
-        
-
+            }
     }
 
     protected void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -65,6 +59,6 @@ public partial class Home : System.Web.UI.Page
     }
     protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
     {
-
+        
     }
 }
