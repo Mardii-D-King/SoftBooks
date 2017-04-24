@@ -42,6 +42,12 @@ public partial class SignIn : System.Web.UI.Page
                 Session["Name"] = dr["Firstname"].ToString();
 
                 Response.Write("<script language='javascript'>window.alert('Login Successfull');</script>");
+
+                string name = dr["Firstname"].ToString().Trim();
+                string id = dr["CustId"].ToString().Trim();
+
+                Session["Name"] = name;
+                Session["ID"] = id;
                 Response.Redirect("Home.aspx");
             }
         }

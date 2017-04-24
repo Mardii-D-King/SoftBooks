@@ -24,6 +24,7 @@ public class Purchases
         QUAN = 4;
 	}
 
+    //Not needed
     public Purchases(int isbn, String bname, double cost, String descr, int quan)
     {
         ISBN = isbn;
@@ -71,5 +72,26 @@ public class Purchases
 
         cmd.Connection = conn;
         cmd.ExecuteNonQuery(); 
+    }
+
+    public void updateQuan(int id, int quan)
+    {
+        SqlConnection conn = new SqlConnection(@"Data Source = DESKTOP-D1ADLHT\OWLERY; Initial Catalog = SoftArchives;Integrated Security=True");
+        conn.Open();
+
+        SqlCommand cmd = new SqlCommand();
+
+        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+        cmd.CommandText = "updateQuan";
+
+        SqlParameter p1 = new SqlParameter();
+        p1.ParameterName = "@id";
+        p1.Value = id;
+        cmd.Parameters.Add(p1);
+
+        SqlParameter p2 = new SqlParameter();
+        p2.ParameterName = "@quan";
+        p2.Value = quan;
+        cmd.Parameters.Add(p2);
     }
 }

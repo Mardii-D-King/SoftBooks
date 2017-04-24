@@ -11,7 +11,8 @@ public partial class Home : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-      //  Label6.Text = Session["Name"].ToString();
+        if(Session["Name"]!=null)
+        Label6.Text = Session["Name"].ToString();
       
     }
     protected void Button1_Click(object sender, EventArgs e)
@@ -55,7 +56,7 @@ public partial class Home : System.Web.UI.Page
     }
     protected void Button2_Click(object sender, EventArgs e)
     {
-        Response.Redirect("CheckOut.aspx");
+        Response.Redirect("Cart.aspx");
     }
     protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
     {
