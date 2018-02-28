@@ -8,7 +8,7 @@
             <Columns>
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:CheckBox ID="CheckBox1" runat="server" />
+                        <asp:Button ID="Button1" runat="server" Text="Add To Cart" />
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:BoundField DataField="ISBN" HeaderText="ISBN" />
@@ -28,6 +28,5 @@
 
         </asp:GridView>
     </div>
-    <asp:Button ID="Button1" runat="server" Text="Add To Cart" OnClick="Button1_Click" />
 </asp:Content>
 
