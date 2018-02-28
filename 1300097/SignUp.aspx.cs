@@ -28,7 +28,7 @@ public partial class SignUp : System.Web.UI.Page
         }
         else
         {
-            obj.InsertOrder(Convert.ToString(TextBox1.Text), 
+            obj.addCustomer(Convert.ToString(TextBox1.Text), 
                             Convert.ToString(TextBox2.Text),
                             Convert.ToString(TextBox4.Text));
 

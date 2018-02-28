@@ -3,12 +3,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <div id="bookList">
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
 
             <Columns>
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:Button ID="Button1" runat="server" Text="Add To Cart" />
+                        <asp:Button ID="Button1" runat="server" Text="Add To Cart" OnClick="Button1_Click"/>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:BoundField DataField="ISBN" HeaderText="ISBN" />

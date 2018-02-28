@@ -38,12 +38,11 @@
                     <a class="nav-link" href="#">Cart</a>
                 </li>
                 <li>
-                    <asp:Button ID="signup" runat="server" Text="SignUp" PostBackUrl="~/SignUp.aspx"/>
-                    
+                    <asp:Button ID="signup" runat="server" Text="SignUp" PostBackUrl="~/SignUp.aspx"/>                  
                 </li>
                 <li><a class="nav-link active" href="#">|</a></li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#" data-target="#loginModal" data-toggle="modal">Login</a>
+                <li>
+                    <asp:Button ID="login" runat="server" Text="LogIn" PostBackUrl="~/LogIn.aspx"/>
                 </li>
             </ul>
         </nav>

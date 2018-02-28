@@ -14,39 +14,55 @@ public class Cart
     private int orderNum;
     
 
-    public Cart(int custId, int isbn, int order_Num)
+    public Cart()
     {
-        CustID = custId;
-        ISBN = isbn;
-        orderNum = order_Num;
     }
 
-    public void InsertOrder()
+    public void guestOrder(int guestId, int isbn)
     {
-        string cs = ConfigurationManager.ConnectionStrings["dbcs"].ConnectionString;
-        SqlConnection conn = new SqlConnection(cs);
-        
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Book", conn);
-            conn.Open();          
-        
+        SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbcs"].ConnectionString);
+
+        SqlCommand cmd = new SqlCommand("guestOrder", conn);
+        conn.Open();          
+
+        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+        cmd.CommandText = "guestOrder";
+
+        SqlParameter p2 = new SqlParameter();
+        p2.ParameterName = "@guestiD";
+        p2.Value = guestId;
+        cmd.Parameters.Add(p2);
+
+        SqlParameter p3 = new SqlParameter();
+        p3.ParameterName = "@isbn";
+        p3.Value = isbn;
+        cmd.Parameters.Add(p3);
+
+        cmd.Connection = conn;
+        cmd.ExecuteNonQuery();
+    }
+
+    public void custOrder(int CustId, int isbn)
+    {
+        SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbcs"].ConnectionString);
+
+        SqlCommand cmd = new SqlCommand("custOrder", conn);
+        conn.Open();
 
         cmd.CommandType = System.Data.CommandType.StoredProcedure;
         cmd.CommandText = "createOrder";
 
-        SqlParameter p1 = new SqlParameter();
-        p1.ParameterName = "@cust_id";
-        p1.Value = CustID;
-        cmd.Parameters.Add(p1);
+        SqlParameter p3 = new SqlParameter();
+        p3.ParameterName = "@custid";
+        p3.Value = CustId;
+        cmd.Parameters.Add(p3);
 
         SqlParameter p2 = new SqlParameter();
         p2.ParameterName = "@isbn";
         p2.Value = ISBN;
         cmd.Parameters.Add(p2);
 
-        SqlParameter p3 = new SqlParameter();
-        p3.ParameterName = "@ordernum";
-        p3.Value = orderNum;
-        cmd.Parameters.Add(p3);
+       
 
         cmd.Connection = conn;
         cmd.ExecuteNonQuery();

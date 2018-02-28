@@ -7,12 +7,19 @@ using System.Web.UI.WebControls;
 
 public partial class MasterPage : System.Web.UI.MasterPage
 {
-    private String user = "Guest";
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        Session["User"] = user;
+        String user = Convert.ToString(Session["USER"]);
 
-        Label1.Text = user;
+        if(user == "")
+        {
+            Label1.Text = "Guest";
+        }
+        else
+        {
+            Label1.Text = user;
+        }
     }
 
     

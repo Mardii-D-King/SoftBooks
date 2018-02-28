@@ -50,14 +50,12 @@ public class Customer
         }
     }
 
-    public void InsertOrder(String fullName, String Email, String Password)
+    public void addCustomer(String fullName, String Email, String Password)
     {
-   
-        string cs = ConfigurationManager.ConnectionStrings["dbcs"].ConnectionString;
-        using (SqlConnection conn = new SqlConnection(cs))
-        {
 
-            conn.Open();
+        SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbcs"].ConnectionString);
+
+        conn.Open();
             SqlCommand cmd = new SqlCommand("registration", conn);
 
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -79,6 +77,6 @@ public class Customer
 
             cmd.Connection = conn;
             cmd.ExecuteNonQuery();
-        }
+        
     }
 }
