@@ -11,8 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/myStyles.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/myStyles.css">
 </head>
 <body>
     <form id="form1" runat="server">
@@ -37,8 +37,9 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Cart</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link active" href="#" data-target="#signUpModal" data-toggle="modal">Sign</a>
+                <li>
+                    <asp:Button ID="signup" runat="server" Text="SignUp" PostBackUrl="~/SignUp.aspx"/>
+                    
                 </li>
                 <li><a class="nav-link active" href="#">|</a></li>
                 <li class="nav-item">
@@ -50,83 +51,12 @@
 
         <!--SignUp starts here-->
 
-        <div class="modal fade" tabindex="-1" id="signUpModal"
-            data-keyboard="false" data-backdrop="static">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">
-                            &times;
-                        </button>
-                        <h4 class="modal-title">Login</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="custName">Name</label>
-                                <asp:TextBox class="form-control" placeholder="Full Name"
-                                    type="text" ID="custName" runat="server"></asp:TextBox>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <asp:TextBox class="form-control" placeholder="Email"
-                                    type="text" ID="email" runat="server"></asp:TextBox>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputPassword_signUp">Password</label>
-                                <asp:TextBox class="form-control" placeholder="Password"
-                                    type="password" ID="inputPassword_signUp" runat="server"></asp:TextBox>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Login</button>
-                        <button type="button" class="btn btn-primary"
-                            data-dismiss="modal">
-                            Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        
         <!--SignUp ends here-->
 
         <!--Login starts here-->
 
-        <div class="modal fade" tabindex="-1" id="loginModal"
-            data-keyboard="false" data-backdrop="static">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">
-                            &times;
-                        </button>
-                        <h4 class="modal-title">Login</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="inputUserName">Username</label>
-                                <input class="form-control" placeholder="Login Username"
-                                    type="text" id="inputUserName" />
-                            </div>
-                            <div class="form-group">
-                                <label for="inputPassword">Password</label>
-                                <input class="form-control" placeholder="Login Password"
-                                    type="password" id="inputPassword" />
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Login</button>
-                        <button type="button" class="btn btn-primary"
-                            data-dismiss="modal">
-                            Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+       
         <!--Login ends here-->
 
         </br>
