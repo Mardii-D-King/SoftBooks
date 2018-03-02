@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -54,11 +55,11 @@ public class Customer
     {
 
         SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbcs"].ConnectionString);
-
         conn.Open();
-            SqlCommand cmd = new SqlCommand("registration", conn);
 
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+        SqlCommand cmd = new SqlCommand("registration", conn);
+
+        cmd.CommandType = CommandType.StoredProcedure;
 
             SqlParameter p2 = new SqlParameter();
             p2.ParameterName = "@fullName";

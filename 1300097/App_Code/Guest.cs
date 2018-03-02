@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -19,16 +20,25 @@ public class Guest
     {
         SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbcs"].ConnectionString);
       
-            conn.Open();
-            SqlCommand cmd = new SqlCommand("createGuest", conn);
+        conn.Open();
+        SqlCommand cmd = new SqlCommand("createGuest", conn);
 
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+        cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-            SqlParameter guest = new SqlParameter("@return", System.Data.SqlDbType.Int);
-           
-            cmd.Connection = conn;
-            cmd.ExecuteNonQuery();
+        int one=1;
 
-            return Convert.ToInt32(guest);    
+        SqlParameter p2 = new SqlParameter();
+        p2.ParameterName = "@One";
+        p2.Value = one;
+        cmd.Parameters.Add(p2);
+
+        cmd.Parameters.Add("@guestid", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+        cmd.ExecuteNonQuery();
+
+        //Converted return Parameter to integer
+        int guest = int.Parse(cmd.Parameters["@guestid"].Value.ToString());
+
+        return guest;
     }
+
 }

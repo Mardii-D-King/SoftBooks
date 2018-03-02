@@ -21,15 +21,16 @@ public class Cart
     public void guestOrder(int guestId, int isbn)
     {
         SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbcs"].ConnectionString);
+        conn.Open();
 
         SqlCommand cmd = new SqlCommand("guestOrder", conn);
-        conn.Open();          
-
+                  
         cmd.CommandType = System.Data.CommandType.StoredProcedure;
-        cmd.CommandText = "guestOrder";
+
+       // guestId = 2;
 
         SqlParameter p2 = new SqlParameter();
-        p2.ParameterName = "@guestiD";
+        p2.ParameterName = "@guest_id";
         p2.Value = guestId;
         cmd.Parameters.Add(p2);
 

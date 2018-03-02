@@ -3,10 +3,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <div id="bookList">
+        <asp:Label ID="show" runat="server" Text="Label"></asp:Label>
+        &nbsp;&nbsp;&nbsp;
         <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+        <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" DataSourceID="db_1300097" DataKeyNames="ISBN">
 
             <Columns>
+
+                <asp:ButtonField Text="Add To Cart" CommandName="Select"/>
 
                 <asp:TemplateField HeaderText="ISBN" SortExpression="ISBN">
                     <ItemTemplate>
