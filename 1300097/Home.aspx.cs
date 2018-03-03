@@ -10,70 +10,62 @@ using System.Web.UI.WebControls;
 
 public partial class Home : System.Web.UI.Page
 {
-    private String user;
-    private int sameGuest = 0;
-
     protected void Page_Load(object sender, EventArgs e)
     {
-        //user = Session["User"].ToString();
+        String user = Convert.ToString(Session["USER"]);
+        int custID = Convert.ToInt16(Session["CUSTid"]);
 
-       
+        if (!IsPostBack)
+        {
+            Order(1, true);
+        }
     }
 
-   
     protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
     {
+
         Label isbn_lbl = GridView1.SelectedRow.FindControl("isbn_lbl") as Label;
         show.Text = isbn_lbl.Text;
 
         int isbn = Convert.ToInt16(((Label)GridView1.SelectedRow.FindControl("isbn_lbl")).Text);
 
-        Session["ISBN"]=isbn;
+        Session["ISBN"] = isbn;
 
-        Order(isbn);
+        Order(isbn, false);
     }
 
-    protected void Order(int isbn)
+    protected void Order(int isbn, bool once)
     {
+        int guestID;
+
         Cart obj = new Cart();
         Guest g_obj = new Guest();
 
         String user = Convert.ToString(Session["USER"]);
         int custID = Convert.ToInt16(Session["CUSTid"]);
 
-        //Determine if user is a guest or registered customer
-        if (user == "")
+        SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbcs"].ConnectionString);
+
+        if (once.Equals(true))
         {
-            sameGuest++;
-
-            user = "Guest";
-
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbcs"].ConnectionString);
-
-            if (sameGuest == 1)
-            {
-
-                int guestID;
-
-              guestID = g_obj.addGuest();
-
-                Session["currGuest"] = guestID;
-            }
-
-            
-
-            int guestNum = Convert.ToInt16(Session["currGuest"]);
-
-            obj.guestOrder(guestNum, isbn);
-
-            Label2.Text = Convert.ToString(guestNum);
-            Label3.Text = Convert.ToString(isbn);
+            guestID = g_obj.addGuest();
         }
+
         else
         {
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbcs"].ConnectionString);
+            if (user == "")
+            {
+                // Create a new sp tha finds what is the latest guest_id and return it
 
-            obj.custOrder(custID, isbn);
+                guestID = g_obj.returnLastGuest();
+
+                obj.guestOrder(guestID, isbn);
+            }
+
+            else
+            {
+                obj.guestOrder(custID, isbn);
+            }
         }
     }
 }

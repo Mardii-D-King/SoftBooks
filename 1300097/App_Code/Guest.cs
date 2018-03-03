@@ -41,4 +41,11 @@ public class Guest
         return guest;
     }
 
+    public int returnLastGuest()
+    {
+
+
+        return 0;
+    }
+
 }
