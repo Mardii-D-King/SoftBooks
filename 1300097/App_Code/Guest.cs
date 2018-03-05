@@ -11,6 +11,8 @@ using System.Web;
 /// </summary>
 public class Guest
 {
+    SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbcs"].ConnectionString);
+
     public Guest()
     {
         
@@ -18,8 +20,6 @@ public class Guest
 
     public int addGuest()
     {
-        SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbcs"].ConnectionString);
-      
         conn.Open();
         SqlCommand cmd = new SqlCommand("createGuest", conn);
 
@@ -43,9 +43,25 @@ public class Guest
 
     public int returnLastGuest()
     {
+        conn.Open();
+        SqlCommand cmd = new SqlCommand("sp_findLastGuest", conn);
 
+        cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-        return 0;
+        int one = 1;
+
+        SqlParameter p2 = new SqlParameter();
+        p2.ParameterName = "@One";
+        p2.Value = one;
+        cmd.Parameters.Add(p2);
+
+        cmd.Parameters.Add("@guestid", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+        cmd.ExecuteNonQuery();
+
+        //Converted return Parameter to integer
+        int guest = int.Parse(cmd.Parameters["@guestid"].Value.ToString());
+
+        return guest;
     }
 
 }

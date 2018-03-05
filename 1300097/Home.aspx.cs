@@ -12,9 +12,6 @@ public partial class Home : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        String user = Convert.ToString(Session["USER"]);
-        int custID = Convert.ToInt16(Session["CUSTid"]);
-
         if (!IsPostBack)
         {
             Order(1, true);
@@ -28,8 +25,6 @@ public partial class Home : System.Web.UI.Page
         show.Text = isbn_lbl.Text;
 
         int isbn = Convert.ToInt16(((Label)GridView1.SelectedRow.FindControl("isbn_lbl")).Text);
-
-        Session["ISBN"] = isbn;
 
         Order(isbn, false);
     }

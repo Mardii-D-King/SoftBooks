@@ -27,8 +27,6 @@ public class Cart
                   
         cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-       // guestId = 2;
-
         SqlParameter p2 = new SqlParameter();
         p2.ParameterName = "@guest_id";
         p2.Value = guestId;
