@@ -35,7 +35,7 @@
                     </a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Cart</a>
+                    <asp:Button ID="cart" runat="server" Text="Cart" PostBackUrl="~/Cart.aspx"/>
                 </li>
                 <li>
                     <asp:Button ID="signup" runat="server" Text="SignUp" PostBackUrl="~/SignUp.aspx"/>                  

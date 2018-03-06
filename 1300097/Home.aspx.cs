@@ -13,9 +13,9 @@ public partial class Home : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         String user = Convert.ToString(Session["USER"]);
-        int custID = Convert.ToInt16(Session["custId"]);
+        String custID = Convert.ToString(Session["custId"]);
 
-        if (!IsPostBack)
+        if (!IsPostBack && custID.Equals(""))
         {
             Order(1, true);
         }
@@ -49,7 +49,7 @@ public partial class Home : System.Web.UI.Page
         String user = Convert.ToString(Session["USER"]);
         int custID = Convert.ToInt16(Session["custId"]);
 
-        Label4.Text = custID.ToString();
+      //  Label4.Text = custID.ToString();
 
        
         if (once.Equals(true))
@@ -67,7 +67,11 @@ public partial class Home : System.Web.UI.Page
             }
             else
             {
-                Label4.Text = custID.ToString();
+                guestID = g_obj.returnLastGuest();
+
+                Label4.Text = guestID.ToString();
+
+                obj.updateOrder(guestID, custID);
                 obj.custOrder(custID, isbn);
             }
         }

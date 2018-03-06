@@ -58,4 +58,27 @@ public class Cart
         cmd.Connection = conn;
         cmd.ExecuteNonQuery();
     }
+
+    public void updateOrder(int guestId, int custId)
+    {
+        SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbcs"].ConnectionString);
+        conn.Open();
+
+        SqlCommand cmd = new SqlCommand("updateOrder", conn);
+
+        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+        SqlParameter p3 = new SqlParameter();
+        p3.ParameterName = "@guestId";
+        p3.Value = guestId;
+        cmd.Parameters.Add(p3);
+
+        SqlParameter p2 = new SqlParameter();
+        p2.ParameterName = "@custId";
+        p2.Value = custId;
+        cmd.Parameters.Add(p2);
+
+        cmd.Connection = conn;
+        cmd.ExecuteNonQuery();
+    }
 }
