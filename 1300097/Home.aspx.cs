@@ -12,6 +12,9 @@ public partial class Home : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        String user = Convert.ToString(Session["USER"]);
+        int custID = Convert.ToInt16(Session["custId"]);
+
         if (!IsPostBack)
         {
             Order(1, true);
@@ -29,18 +32,26 @@ public partial class Home : System.Web.UI.Page
         Order(isbn, false);
     }
 
+    protected void store(string user, int cust)
+    {
+
+    }
+
     protected void Order(int isbn, bool once)
     {
+        SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbcs"].ConnectionString);
+
         int guestID;
 
         Cart obj = new Cart();
         Guest g_obj = new Guest();
 
         String user = Convert.ToString(Session["USER"]);
-        int custID = Convert.ToInt16(Session["CUSTid"]);
+        int custID = Convert.ToInt16(Session["custId"]);
 
-        SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbcs"].ConnectionString);
+        Label4.Text = custID.ToString();
 
+       
         if (once.Equals(true))
         {
             guestID = g_obj.addGuest();
@@ -50,16 +61,14 @@ public partial class Home : System.Web.UI.Page
         {
             if (user == "")
             {
-                // Create a new sp tha finds what is the latest guest_id and return it
-
                 guestID = g_obj.returnLastGuest();
 
                 obj.guestOrder(guestID, isbn);
             }
-
             else
             {
-                obj.guestOrder(custID, isbn);
+                Label4.Text = custID.ToString();
+                obj.custOrder(custID, isbn);
             }
         }
     }

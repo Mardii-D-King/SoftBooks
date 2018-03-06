@@ -8,6 +8,8 @@
         <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
 &nbsp;&nbsp;&nbsp;
         <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" DataSourceID="db_1300097" DataKeyNames="ISBN">
 
             <Columns>

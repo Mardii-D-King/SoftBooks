@@ -35,8 +35,8 @@ public partial class LogIn : System.Web.UI.Page
         {
             Response.Write("<script language='javascript'>window.alert('Login Successfull');</script>");
             Session["USER"] = dr["Name"].ToString();
-            Session["CUSTid"] = dr["custId"];
-            Label1.Text= "  Welcome" + dr["Name"].ToString();
+            Session["custId"] = dr["custId"];
+            Label1.Text= "  Welcome" + Session["custId"].ToString();
             Response.Redirect("Home.aspx");
         }
         else

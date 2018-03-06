@@ -9,11 +9,6 @@ using System.Web;
 
 public class Cart
 {
-    private int CustID;
-    private int ISBN;
-    private int orderNum;
-    
-
     public Cart()
     {
     }
@@ -28,7 +23,7 @@ public class Cart
         cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
         SqlParameter p2 = new SqlParameter();
-        p2.ParameterName = "@guest_id";
+        p2.ParameterName = "@guestid";
         p2.Value = guestId;
         cmd.Parameters.Add(p2);
 
@@ -44,12 +39,11 @@ public class Cart
     public void custOrder(int CustId, int isbn)
     {
         SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbcs"].ConnectionString);
-
-        SqlCommand cmd = new SqlCommand("custOrder", conn);
         conn.Open();
 
+        SqlCommand cmd = new SqlCommand("custOrder", conn);
+        
         cmd.CommandType = System.Data.CommandType.StoredProcedure;
-        cmd.CommandText = "createOrder";
 
         SqlParameter p3 = new SqlParameter();
         p3.ParameterName = "@custid";
@@ -58,10 +52,8 @@ public class Cart
 
         SqlParameter p2 = new SqlParameter();
         p2.ParameterName = "@isbn";
-        p2.Value = ISBN;
+        p2.Value = isbn;
         cmd.Parameters.Add(p2);
-
-       
 
         cmd.Connection = conn;
         cmd.ExecuteNonQuery();
