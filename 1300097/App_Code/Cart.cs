@@ -81,4 +81,14 @@ public class Cart
         cmd.Connection = conn;
         cmd.ExecuteNonQuery();
     }
+
+    public int getCustQuantity(int custId)
+    {
+        return 0;
+    }
+
+    public int getGuestQuantity(int guestId)
+    {
+        return 0;
+    }
 }
