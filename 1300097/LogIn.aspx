@@ -6,9 +6,10 @@
 <head runat="server">
     <title></title>
 </head>
-<body>
+<body runat="server" id="login_pageBody">
     <form id="form1" runat="server">
-        <div>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+         <div align="center">
             <asp:Label ID="Label1" runat="server" Text="Email: "></asp:Label>
             <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
             <br />

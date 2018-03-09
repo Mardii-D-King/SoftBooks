@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/myStyles.css">
 </head>
-<body>
+<body runat="server" id="pageBody">
+
     <form id="form1" runat="server">
 
         <!--Navbar starts here-->
@@ -24,119 +25,116 @@
                 SoftBooks
             </a>
             <div class="collapse navbar-collapse" id="navbarNavDropdown"></div>
-
-            <ul class="navbar-nav navbar-right">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">
-                        <asp:Label ID="Label1" runat="server" Text="User"></asp:Label>
-                    </a>
-                </li>
-                <li class="nav-item active">
-                    <asp:Button ID="cart" runat="server" Text="Cart" PostBackUrl="~/Cart.aspx"/>
-                </li>
-                <li>
-                    <asp:Button ID="signup" runat="server" Text="SignUp" PostBackUrl="~/SignUp.aspx"/>                  
-                </li>
-                <li><a class="nav-link active" href="#">|</a></li>
-                <li>
-                    <asp:Button ID="login" runat="server" Text="LogIn" PostBackUrl="~/LogIn.aspx"/>
-                </li>
-            </ul>
+            <div class="navbarLinks">
+                <ul class="navbar-nav navbar-right">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="MyProfile.aspx">
+                            <asp:Label ID="Label1" runat="server" Text="User"></asp:Label>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="CartMenu.aspx">
+                            <asp:Label ID="Label2" runat="server" Text="Cart"></asp:Label>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="SignUp.aspx">
+                            <asp:Label ID="Label3" runat="server" Text="SignUp"></asp:Label>
+                        </a>
+                    </li>
+                    <li><a class="nav-link active" href="#">|</a></li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="LogIn.aspx">
+                            <asp:Label ID="Label4" runat="server" Text="Login"></asp:Label>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </nav>
         <!--Navbar ends here-->
 
         <!--SignUp starts here-->
 
-        
+
         <!--SignUp ends here-->
 
         <!--Login starts here-->
 
-       
+
         <!--Login ends here-->
 
-        </br>
+        <br />
 
-        <!--Carousel(Slideshow) starts here-->
-        <div align="center">
-            <div class="d-block w-50 h-50">
-
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-wrap="true">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol>
-
-                    <div class="carousel-inner">
-
-                        <div class="carousel-item active">
-                            <img src="imgs/poetry.jpg" alt="First slide">
-                            <div class="carousel-caption">
-                                <h5>Poetry Books</h5>
-                                <p>Books for kids and adults that loves adventures</p>
-                            </div>
-                        </div>
-
-                        <div class="carousel-item">
-                            <img src="imgs/story.jpg">
-                            <div class="carousel-caption">
-                                <h5>Story Books</h5>
-                                <p>Books for kids and adults that loves adventures</p>
-                            </div>
-                        </div>
-
-                        <div class="carousel-item">
-                            <img src="imgs/novels.jpg" alt="Third slide">
-                            <div class="carousel-caption">
-                                <h5>Novels</h5>
-                                <p>Books for kids and adults that loves adventures</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!--Carousel(Slideshow) ends here-->
-
-        </br> </br>
-
-        <!--Sidebar Menu starts here-->
-        <div>
-            <div id="list-example" class="list-group" style="width: 15rem;">
-                <a class="list-group-item list-group-item-action" href="#list-item-1">Item 1</a>
-                <a class="list-group-item list-group-item-action" href="#list-item-2">Poetry</a>
-                <a class="list-group-item list-group-item-action" href="#list-item-3">Story</a>
-                <a class="list-group-item list-group-item-action" href="#list-item-4">Novels</a>
-            </div>
-        </div>
-        <!--Sidebar Menu ends here-->
 
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             <h2>This is the content place holder place</h2>
         </asp:ContentPlaceHolder>
 
+        <asp:ContentPlaceHolder ID="CartMenu" runat="server">
+            <h2>This is the content place holder for cart</h2>
+        </asp:ContentPlaceHolder>
+
+
+        <div id="foot">
+
+            <!--Footer-->
+            <footer class="page-footer font-small blue pt-4 mt-4">
+
+                <!--Footer Links-->
+                <div class="container-fluid text-center text-md-left">
+                    <div class="row">
+
+                        <!--First column-->
+                        <div class="col-md-6">
+                            <h5 class="text-uppercase">SoftBooks</h5>
+                            <p>Here you can use rows and columns here to organize your footer content.</p>
+                        </div>
+                        <!--/.First column-->
+
+                        <!--Second column-->
+                        <div class="col-md-6">
+                            <h5 class="text-uppercase">Links</h5>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="#!">Link 1</a>
+                                </li>
+                                <li>
+                                    <a href="#!">Link 2</a>
+                                </li>
+                                <li>
+                                    <a href="#!">Link 3</a>
+                                </li>
+                                <li>
+                                    <a href="#!">Link 4</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--/.Second column-->
+                    </div>
+                </div>
+                <!--/.Footer Links-->
+        </div>
+
+
+        <!--Copyright-->
+        <div class="footer-copyright py-3 text-center" id="copyright">
+            © 2018 Copyright:
+        <a href="https://mdbootstrap.com/material-design-for-bootstrap/">MDBootstrap.com </a>
+        </div>
+        <!--/.Copyright-->
+
+        </footer>
+            <!--/.Footer-->
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-
-
     </form>
 
 </body>
+
 </html>

@@ -25,16 +25,11 @@ public partial class Home : System.Web.UI.Page
     {
 
         Label isbn_lbl = GridView1.SelectedRow.FindControl("isbn_lbl") as Label;
-        show.Text = isbn_lbl.Text;
+        //show.Text = isbn_lbl.Text;
 
         int isbn = Convert.ToInt16(((Label)GridView1.SelectedRow.FindControl("isbn_lbl")).Text);
 
         Order(isbn, false);
-    }
-
-    protected void store(string user, int cust)
-    {
-
     }
 
     protected void Order(int isbn, bool once)
@@ -49,8 +44,6 @@ public partial class Home : System.Web.UI.Page
         String user = Convert.ToString(Session["USER"]);
         int custID = Convert.ToInt16(Session["custId"]);
 
-      //  Label4.Text = custID.ToString();
-
        
         if (once.Equals(true))
         {
@@ -62,15 +55,11 @@ public partial class Home : System.Web.UI.Page
             if (user == "")
             {
                 guestID = g_obj.returnLastGuest();
-
                 obj.guestOrder(guestID, isbn);
             }
             else
             {
                 guestID = g_obj.returnLastGuest();
-
-                Label4.Text = guestID.ToString();
-
                 obj.updateOrder(guestID, custID);
                 obj.custOrder(custID, isbn);
             }

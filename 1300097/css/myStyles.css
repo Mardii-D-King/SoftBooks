@@ -1,9 +1,35 @@
 ﻿#list-example {
     margin-left: 2%;
-    float:left;
+    margin-right: 7.5%;
+    float: left;
+}
+
+#ContentPlaceHolder1 {
+    margin-left: 10%;
+}
+
+.test {
+    background-color: #20262e;
+}
+
+.login {
+    background-color: #20262e;
+}
+
+footer {
+    background-color: #007bff;
+    color: aliceblue;
+}
+
+#copyright {
+    background-color: #000080;
+    color: aliceblue;
 }
 
 #bookList {
-    float: left;
-    margin-left: 8%;
+    color: aliceblue;
+}
+
+.loginStyles {
+    background-color: #20262e;
 }
